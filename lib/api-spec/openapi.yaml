@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: RiskRupee cyber risk quantification API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: risk
+    description: Cyber risk quantification operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,94 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /risk/overview:
+    get:
+      operationId: getRiskOverview
+      tags: [risk]
+      summary: Get organization risk overview
+      responses:
+        "200":
+          description: Risk overview
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RiskOverview"
+  /risk/scenarios:
+    get:
+      operationId: getRiskScenarios
+      tags: [risk]
+      summary: List cyber risk scenarios
+      responses:
+        "200":
+          description: Risk scenarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RiskScenario"
+  /risk/scenarios/{id}:
+    get:
+      operationId: getRiskScenario
+      tags: [risk]
+      summary: Get a scenario with explainability details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Risk scenario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RiskScenario"
+        "404":
+          description: Scenario not found
+  /risk/controls:
+    get:
+      operationId: getRiskControls
+      tags: [risk]
+      summary: List security controls for allocation
+      responses:
+        "200":
+          description: Security controls
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SecurityControl"
+  /risk/compliance:
+    get:
+      operationId: getCompliancePosture
+      tags: [risk]
+      summary: Get India-specific compliance posture
+      responses:
+        "200":
+          description: Compliance posture
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ComplianceItem"
+  /risk/activity:
+    get:
+      operationId: getRiskActivity
+      tags: [risk]
+      summary: Get recent risk activity
+      responses:
+        "200":
+          description: Recent activity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivityItem"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +123,72 @@ components:
           type: string
       required:
         - status
+    RiskOverview:
+      type: object
+      required: [expectedLoss, lossChange, var95, riskScore, protectedAssets, controlCoverage, lastUpdated]
+      properties:
+        expectedLoss: { type: number }
+        lossChange: { type: number }
+        var95: { type: number }
+        riskScore: { type: number }
+        protectedAssets: { type: number }
+        controlCoverage: { type: number }
+        lastUpdated: { type: string }
+    RiskScenario:
+      type: object
+      required: [id, name, category, status, expectedLoss, likelihood, impact, trend, owner, updatedAt, explanation, breakdown]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        category: { type: string }
+        status: { type: string, enum: [critical, elevated, monitored, controlled] }
+        expectedLoss: { type: number }
+        likelihood: { type: number }
+        impact: { type: number }
+        trend: { type: number }
+        owner: { type: string }
+        updatedAt: { type: string }
+        explanation: { type: string }
+        breakdown:
+          type: object
+          required: [frequency, vulnerability, lossMagnitude, responseCost, regulatoryFines, businessImpact]
+          properties:
+            frequency: { type: number }
+            vulnerability: { type: number }
+            lossMagnitude: { type: number }
+            responseCost: { type: number }
+            regulatoryFines: { type: number }
+            businessImpact: { type: number }
+    SecurityControl:
+      type: object
+      required: [id, name, domain, cost, reduction, selected, status, rationale]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        domain: { type: string }
+        cost: { type: number }
+        reduction: { type: number }
+        selected: { type: boolean }
+        status: { type: string }
+        rationale: { type: string }
+    ComplianceItem:
+      type: object
+      required: [framework, requirement, status, coverage, dueDate, owner]
+      properties:
+        framework: { type: string }
+        requirement: { type: string }
+        status: { type: string, enum: [compliant, attention, gap] }
+        coverage: { type: number }
+        dueDate: { type: string }
+        owner: { type: string }
+    ActivityItem:
+      type: object
+      required: [id, type, title, detail, actor, timestamp]
+      properties:
+        id: { type: string }
+        type: { type: string }
+        title: { type: string }
+        detail: { type: string }
+        actor: { type: string }
+        timestamp: { type: string }
 

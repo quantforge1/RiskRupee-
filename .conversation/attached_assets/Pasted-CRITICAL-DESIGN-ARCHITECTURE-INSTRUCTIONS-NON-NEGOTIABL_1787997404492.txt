@@ -1,0 +1,24 @@
+CRITICAL DESIGN & ARCHITECTURE INSTRUCTIONS (NON-NEGOTIABLE)
+
+1. DESIGN LANGUAGE & AESTHETICS
+(Strictly no "Groww/PolicyBazaar" or other Indian fintech clones)
+- Avoid Consumer Fintech Tropes: Do not use bright neon green/red status pills, rounded cartoonish illustrations, massive banner carousels, or cluttered card grids.
+- B2B Deep-Tech / Financial Engineering Styling: 
+  - Adopt a refined, restrained color palette (dark mode default or crisp minimalist light mode).
+  - Use slate/zinc backgrounds, subtle glassmorphic borders (border-white/10), razor-sharp typography (Inter/Geist font styling), and high-density data layouts.
+- Data Density over Whitespace: Prioritize tabular precision, micro-charts (sparklines), and compact metric cards over oversized icons for CFO and CISO views.
+
+2. COLOR & THEME SYSTEM
+- Primary Background: Deep Slate / Obsidian (#09090b / #18181b).
+- Accent / Action: Electric Indigo or Clean Tech Blue (#6366f1 / #3b82f6) -- reserved strictly for primary CTAs and active states.
+- Risk Indicators: Use muted, sophisticated financial risk tones (e.g., Amber-500 for medium, Rose-500/Red-900 subtle gradients for critical) instead of blinding neon alerts.
+
+3. COMPONENT ARCHITECTURE & INTERACTIVITY
+- Custom Charts: Build clean, responsive SVG or Tailwind/Canvas-based charts for the Investment Optimizer Efficient Frontier and Monte Carlo simulations. Avoid generic, poorly-styled default placeholders.
+- Interactive Feedback: Every action (budget slider adjustment, role-switching, control toggling) must feature immediate state reactivity with smooth transitions (<150ms debounce).
+- Risk X-Ray Drawer: Ensure the slide-over drawer feels buttery smooth, utilizing proper backdrop blur and layered depth shadows (shadow-2xl).
+
+4. CODE QUALITY & STRUCTURE
+- Modularization: Cleanly separate components to avoid massive monolithic files.
+- Simulation Math Engine: Isolate the calculation logic (Monte Carlo / Knapsack optimizer) into a dedicated utility file (riskEngine.js) to ensure the simulations feel robust and realistic.
+- Error-Free Execution: Ensure zero console errors during live demo state transitions.

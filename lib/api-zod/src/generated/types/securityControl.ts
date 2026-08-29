@@ -6,6 +6,13 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface HealthStatus {
+export interface SecurityControl {
+  id: string;
+  name: string;
+  domain: string;
+  cost: number;
+  reduction: number;
+  selected: boolean;
   status: string;
+  rationale: string;
 }

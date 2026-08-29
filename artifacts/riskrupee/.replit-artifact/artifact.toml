@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "RiskRupee"
+description = "A board-ready cyber risk quantification platform that translates cyber exposure into rupees, simulates loss, maps compliance, and recommends the highest-impact security investments for CISOs, CFOs, and GRC teams."
+version = "1.0.0"
+id = "artifacts/riskrupee"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20741
+
+[services.development]
+run = "pnpm --filter @workspace/riskrupee run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/riskrupee", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/riskrupee/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20741"
+BASE_PATH = "/"

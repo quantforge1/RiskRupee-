@@ -1,0 +1,134 @@
+MASTER BUILD PROMPT — RISKRUPPEE
+
+0. BUILDER CONTEXT
+
+Build RiskRupee, a production-grade, investor-demo-quality SaaS web application for the Smart India Hackathon. It must look and behave like a real fintech/security startup, not a college project or basic hackathon MVP.
+
+Visual quality should be comparable to products such as Stripe, Mercury, or Linear: confident typography, generous whitespace, premium glassmorphic cards, strong data visualization, smooth motion, responsive layouts, and polished micro-interactions.
+
+The prototype must be fully interactive and reliable during a 3–5 minute live demo, even without external APIs or internet-dependent services.
+
+Use realistic Indian demo data throughout. Never use Lorem Ipsum.
+
+---
+
+1. PRODUCT
+
+Name: RiskRupee
+
+Tagline:
+"Quantify Risk. Optimize Spend. In Real Time."
+
+One-line pitch:
+RiskRupee continuously translates an organization's cyber exposure into rupees and tells leadership where the next rupee of security spending should go for maximum risk reduction.
+
+---
+
+2. PROBLEM & SOLUTION
+
+Organizations commonly manage cybersecurity risk using qualitative red/amber/green heat maps and periodic audits. This makes it difficult for boards and CFOs to compare cybersecurity investments with other financial decisions, while security teams struggle to prove ROI.
+
+RiskRupee solves this by:
+
+1. Continuously quantifying cyber risk in ₹ Lakh/Crore using a FAIR-style model.
+2. Calculating Annualized Loss Expectancy (ALE) and Value-at-Risk (VaR) using simulated/Monte Carlo analysis.
+3. Maintaining a risk register covering realistic cyber scenarios.
+4. Solving a constrained optimization problem to recommend the best security-control allocation for a given budget.
+5. Providing an India-specific compliance layer covering CERT-In, RBI, SEBI CSCRF and DPDP.
+6. Translating plain-English threats into financial cyber-risk scenarios.
+7. Producing board-ready reports in English/Hindi.
+
+---
+
+3. TARGET USERS
+
+Support these roles:
+
+- CISO / Security Analyst — manages risks, assets, controls and daily security decisions.
+- CFO / Board Member — wants simple ₹-denominated risk and investment information.
+- Compliance / GRC Officer — monitors regulations, controls and reporting deadlines.
+- Admin — manages organization, users and roles.
+
+The dashboard must change based on the active role.
+
+For the demo, provide a visible role switcher in the top bar so the presenter can switch between CISO, CFO/Board and Compliance views without logging out.
+
+---
+
+4. CORE FEATURES
+
+Implement:
+
+- FAIR-style cyber risk quantification.
+- Monte Carlo-based ALE/VaR simulation.
+- Risk register with six major cyber scenarios.
+- Asset inventory.
+- Security-control/mitigation inventory.
+- Guided onboarding/self-assessment wizard.
+- Role-aware dashboards.
+- Board-ready report generator.
+- English/Hindi report toggle.
+- Notifications and alerts.
+- Compliance mapping.
+- Audit log.
+- Interactive Investment Optimizer.
+- Threat Translator.
+- Risk X-Ray explainability.
+- Risk Pulse live simulation.
+
+All calculations must use believable synthetic demo data.
+
+---
+
+5. WOW FEATURES — PRIORITY
+
+These are the centerpiece of the application and must receive the highest implementation and visual priority.
+
+5.1 Investment Optimizer + Efficient Frontier
+
+Create an interactive security-budget allocator.
+
+User can:
+
+- Set a total security budget with a slider/input.
+- See candidate controls with cost and estimated risk reduction.
+- Toggle controls manually.
+- Compare manual allocation against mathematically optimal allocation.
+- See the risk reduction change immediately.
+- Apply the recommended allocation.
+
+Use a client-side constrained optimization algorithm such as greedy/0-1 knapsack:
+
+Goal: maximize total ΔALE subject to the available budget.
+
+Show:
+
+- Efficient Frontier scatter/line chart.
+- X-axis = security spend.
+- Y-axis = risk reduction.
+- Clearly highlighted optimal point.
+- User's manual allocation point.
+- Connecting curve/frontier.
+- Control cost-vs-risk-reduction visualization.
+- Gordon-Loeb reference/guardrail indicating a recommended ceiling of approximately 37% of expected loss.
+
+Dragging the budget slider must visibly change the optimal allocation and chart in real time.
+
+Debounce expensive calculations around 150–250 ms so interaction remains smooth.
+
+---
+
+5.2 Risk X-Ray — Glass-Box Explainability
+
+Every important ₹ risk figure should be clickable.
+
+Clicking opens a drawer/side panel containing:
+
+- Threat Event Frequency.
+- Vulnerability.
+- Loss Magnitude.
+- Response/recovery cost.
+- Regulatory fines.
+- Reputation/productivity impact.
+- Calculation/breakdown visualization.
+- 2–3 sentence plain-English explanation of why the number is what it is.
